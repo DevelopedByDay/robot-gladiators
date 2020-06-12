@@ -140,8 +140,18 @@ var endGame = function() {
     }
 };
 
+var getPlayerName = function() {
+    var name = "";
+    while (name === "" || name === null ) {
+        name = prompt("What is your robot's name?")
+    }
+
+    console.log("Your robots name is " + name);
+    return name;
+}
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     Health: 100,
     Attack: 10,
     Money: 10,
