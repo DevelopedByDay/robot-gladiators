@@ -150,10 +150,25 @@ var startGame = function() {
 
 var endGame = function() {
     
+
     if (playerInfo.health > 0) {
         window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
-
-    }
+        
+        var highscore = localStorage.getItem("highscore");
+        
+        if (highscore === null) {
+            highscore = 0;
+        }
+        if (playerInfo.money > highscore) {
+            localStorage.setItem("highscore", playerInfo.money);
+            localStorage.setItem("name", playerInfo.name);
+            alert(playerInfo.name + " now has the high score of " + playerInfo.money + "!")
+        }
+        else {
+            alert(playerInfo.name + " did not beat the high score of " + highscore + ". Maybe next time!");
+        }
+    } 
+    
     else {
         window.alert("You've lost your robot in battle.");
     }
@@ -190,7 +205,7 @@ var playerInfo = {
     },
     refillHealth: function() {
         if (this.money >= 7) {
-            window.alert("Upgrading player's attack by 6 for 7 dollars.");
+            window.alert("Refilling player's health by 20 for 7 dollars.");
             this.health += 20;
             this.money -= 7;
         }
